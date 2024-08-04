@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-cat bg-center bg-no-repeat bg-fixed bg-cover relative ${inter.className}`}
+        className={`bg-purple-400 relative ${inter.className}`}
       >
         <div className="bg-black bg-opacity-50 fixed top-0 left-0 w-full h-full" />
         {children}
