@@ -11,13 +11,13 @@ export default function Animation({ animationData }: any) {
     },
   };
   return (
-    <div className="">
+    <div className="h-screen flex items-center justify-center ">
       <Lottie
         options={defaultOptions}
         height={300}
         width={300}
-        //   isStopped={this.state.isStopped}
-        //   isPaused={this.state.isPaused}
+       
+       
       />
     </div>
   );
