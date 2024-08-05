@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Audio from "@/components/Audio";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`bg-purple-400 relative ${inter.className}`}
-      >
+      <body className={`bg-purple-400 relative ${inter.className}`}>
         <div className="bg-black bg-opacity-50 fixed top-0 left-0 w-full h-full" />
+        <Audio />
         {children}
       </body>
     </html>
