@@ -1,33 +1,38 @@
-"use client"
+"use client";
 
+import Image from "next/image";
 // components/AudioPlayer.tsx
-import { useEffect, useRef } from 'react';
-
+import { useEffect, useRef, useState } from "react";
+import SoundIcon from "/public/sound.svg";
 const AudioPlayer: React.FC = () => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-
+  const audioRef = useRef<any>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   useEffect(() => {
-    const handleUserInteraction = () => {
-      if (audioRef.current) {
-        audioRef.current.play().catch(error => {
-          console.error('Failed to play audio:', error);
-        });
-      }
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-    };
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying, audioRef]);
 
-    document.addEventListener('click', handleUserInteraction);
-    document.addEventListener('touchstart', handleUserInteraction);
+  const handlePlay = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
-    return () => {
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-    };
-  }, []);
+  return (
+    <>
+      <audio className="h-100" autoPlay ref={audioRef}>
+        <source src="/perfect.mp3" />
+      </audio>
 
-  return <audio ref={audioRef} src="/perfect.mp3" loop style={{ display: 'none' }} />;
+      <div
+        onClick={handlePlay}
+        className="h-10 w-10  cursor-pointer fixed bottom-3 right-3  z-10 "
+      >
+        <Image src={SoundIcon} alt="sound-icon" fill />
+      </div>
+    </>
+  );
 };
 
 export default AudioPlayer;
-
